@@ -56,7 +56,7 @@ function App() {
         </ListSection>
       )}
       <MessageSection>
-        {loading && <p>Loading...</p>}
+        {loading && <Loading>Loading...</Loading>}
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </MessageSection>
     </div>
@@ -64,6 +64,7 @@ function App() {
 }
 
 const MessageSection = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,7 +81,12 @@ const ListSection = styled.div`
   }
 `;
 
+const Loading = styled.p`
+  font-size: 24px;
+`;
+
 const ErrorMessage = styled.p`
+  font-size: 24px;
   color: red;
 `;
 
