@@ -55,10 +55,17 @@ function App() {
           {companyList}
         </ListSection>
       )}
-      <MessageSection>
-        {loading && <Loading>Loading...</Loading>}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </MessageSection>
+
+      {loading && (
+        <MessageSection>
+          <Loading>Loading...</Loading>
+        </MessageSection>
+      )}
+      {error && (
+        <MessageSection>
+          <ErrorMessage>{error}</ErrorMessage>
+        </MessageSection>
+      )}
     </div>
   );
 }
