@@ -50,7 +50,7 @@ export const CompanyListCard = (props: CompanyListProps) => {
 const Card = styled.section`
   background-color: #fff;
   max-width: 768px;
-  margin: 0 auto 16px auto;
+  margin: 0 0 16px 0;
   padding: 16px 32px;
   h2 {
     color: #334680;
