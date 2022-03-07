@@ -40,6 +40,7 @@ function App() {
     <div>
       {Boolean(companies.length) && (
         <ListSection>
+          <h1>Some Amazing Companies</h1>
           <ReactPaginate
             previousLabel={"<"}
             nextLabel={">"}
@@ -80,7 +81,7 @@ const MessageSection = styled.div`
 
 const ListSection = styled.div`
   max-width: 768px;
-  margin: 0 auto 0 auto;
+  margin: 48px auto 0 auto;
 
   > ul {
     max-width: 400px;
