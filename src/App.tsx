@@ -1,20 +1,25 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CompanyListCard } from "../src/components/CompanyListCard";
-import { fetchCompanyList } from "./redux/actions";
+import { useTypedSelector } from "./hooks/useTypeSelector";
+import { getCompanies } from "./redux/actionCreators/getCompanies";
 
 function App() {
   const dispatch = useDispatch();
-  const companyList = useSelector((state) => state.companyList);
+  const { companies, loading, error } = useTypedSelector(
+    (state) => state.companies
+  );
 
   useEffect(() => {
-    dispatch(fetchCompanyList());
-  }, []);
+    dispatch(getCompanies());
+  }, [dispatch]);
+
+  console.log(loading, error);
 
   return (
     <div>
-      {companyList ? (
-        companyList.map((company) => <CompanyListCard {...company} />)
+      {companies ? (
+        companies.map((company) => <CompanyListCard {...company} />)
       ) : (
         <p>Error</p>
       )}
