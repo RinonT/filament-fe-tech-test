@@ -1,24 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+
+import { CompanyListCard } from "../src/components/CompanyListCard";
 
 function App() {
+  const [companies, setCompanies] = useState([]);
+
+  const fetchCompanies = () => {
+    fetch("http://localhost:4000/companies")
+      .then(async (response) => {
+        const data = await response.json();
+
+        // check for error response
+        if (!response.ok) {
+          // get error message from body or default to response statusText
+          const error = (data && data.message) || response.statusText;
+          return Promise.reject(error);
+        }
+
+        setCompanies(data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchCompanies();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {companies ? (
+        companies.map((company) => <CompanyListCard {...company} />)
+      ) : (
+        <p>Error</p>
+      )}
     </div>
   );
 }

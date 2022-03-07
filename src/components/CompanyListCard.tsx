@@ -1,12 +1,35 @@
 import styled from "styled-components";
 
 const Card = styled.section`
-  backgroundcolor: #fff;
+  background-color: #fff;
+  max-width: 768px;
+  margin: 0 auto 16px auto;
+  padding: 16px 32px;
+  h2 {
+    color: #334680;
+  }
+  span {
+    display: block;
+    margin-bottom: 12px;
+  }
 `;
 
 const CardSection = styled.section`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  div {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    div {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 interface CompanyListProps {
@@ -15,8 +38,8 @@ interface CompanyListProps {
   sector: string;
   address: string;
   postcode: string;
-  propertySize: number;
-  leasePrice: string;
+  property_size: number;
+  lease_price: string;
 }
 
 export const CompanyListCard = (props: CompanyListProps) => {
@@ -34,7 +57,7 @@ export const CompanyListCard = (props: CompanyListProps) => {
         </div>
         <div>
           <span>
-            Our address:<b>{props.address}</b>
+            Our address: <b>{props.address}</b>
           </span>
           <span>
             Postcode: <b>{props.postcode}</b>
@@ -43,10 +66,10 @@ export const CompanyListCard = (props: CompanyListProps) => {
       </CardSection>
       <div>
         <span>
-          Poperty Size: <b>{props.propertySize}</b>
+          Poperty Size: <b>{props.property_size}</b>
         </span>
         <span>
-          Here is the lease price: <b>{props.leasePrice}</b>
+          Here is the lease price: <b>{props.lease_price}</b>
         </span>
       </div>
     </Card>
