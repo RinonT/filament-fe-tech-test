@@ -1,3 +1,14 @@
+import styled from "styled-components";
+
+const Card = styled.section`
+  backgroundcolor: #fff;
+`;
+
+const CardSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+`;
+
 interface CompanyListProps {
   name: string;
   website: string;
@@ -10,22 +21,34 @@ interface CompanyListProps {
 
 export const CompanyListCard = (props: CompanyListProps) => {
   return (
-    <section>
+    <Card>
       <h2>{props.name}</h2>
+      <CardSection>
+        <div>
+          <span>
+            Website: <b>{props.website}</b>
+          </span>
+          <span>
+            Sector: <b>{props.sector}</b>
+          </span>
+        </div>
+        <div>
+          <span>
+            Our address:<b>{props.address}</b>
+          </span>
+          <span>
+            Postcode: <b>{props.postcode}</b>
+          </span>
+        </div>
+      </CardSection>
       <div>
-        <div>
-          <span>Website: {props.website}</span>
-          <span>Sector: {props.sector}</span>
-        </div>
-        <div>
-          <span>Our address: {props.address}</span>
-          <span>Postcode{props.postcode}</span>
-        </div>
-        <div>
-          <span>Poperty Size: {props.propertySize}</span>
-          <span>Here is the lease price: {props.leasePrice}</span>
-        </div>
+        <span>
+          Poperty Size: <b>{props.propertySize}</b>
+        </span>
+        <span>
+          Here is the lease price: <b>{props.leasePrice}</b>
+        </span>
       </div>
-    </section>
+    </Card>
   );
 };
