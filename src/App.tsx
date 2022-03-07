@@ -23,9 +23,9 @@ function App() {
     companies.length > 0 && setPageCount(Math.ceil(companies.length / perPage));
   }, [companies]);
 
-  const companyList = companies
-    .slice(offset, offset + perPage)
-    .map((company) => {
+  const companyList =
+    companies &&
+    companies.slice(offset, offset + perPage).map((company) => {
       return <CompanyListCard key={company.id} {...company}></CompanyListCard>;
     });
 
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div>
-      {Boolean(companies.length) && (
+      {Boolean(companies?.length) && (
         <ListSection>
           <h1>Some Amazing Companies</h1>
           <ReactPaginate
