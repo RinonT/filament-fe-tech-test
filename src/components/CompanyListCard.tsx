@@ -33,6 +33,7 @@ const CardSection = styled.section`
 `;
 
 interface CompanyListProps {
+  id: string;
   name: string;
   website: string;
   sector: string;
@@ -44,7 +45,7 @@ interface CompanyListProps {
 
 export const CompanyListCard = (props: CompanyListProps) => {
   return (
-    <Card>
+    <Card key={props.id}>
       <h2>{props.name}</h2>
       <CardSection>
         <div>
