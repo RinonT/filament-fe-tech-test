@@ -1,37 +1,20 @@
-import { useEffect, useState } from "react";
-
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { CompanyListCard } from "../src/components/CompanyListCard";
+import { fetchCompanyList } from "./redux/actions";
 
 function App() {
-  const [companies, setCompanies] = useState([]);
-
-  const fetchCompanies = () => {
-    fetch("http://localhost:4000/companies")
-      .then(async (response) => {
-        const data = await response.json();
-
-        // check for error response
-        if (!response.ok) {
-          // get error message from body or default to response statusText
-          const error = (data && data.message) || response.statusText;
-          return Promise.reject(error);
-        }
-
-        setCompanies(data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
-  };
+  const dispatch = useDispatch();
+  const companyList = useSelector((state) => state.companyList);
 
   useEffect(() => {
-    fetchCompanies();
+    dispatch(fetchCompanyList());
   }, []);
 
   return (
     <div>
-      {companies ? (
-        companies.map((company) => <CompanyListCard {...company} />)
+      {companyList ? (
+        companyList.map((company) => <CompanyListCard {...company} />)
       ) : (
         <p>Error</p>
       )}
