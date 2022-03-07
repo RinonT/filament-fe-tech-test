@@ -24,7 +24,7 @@ This endpoint will return an array of 200 fake companies. You can verify that th
 If you want to see the tests, run the following command
 
  `npm run test`
- 
+
 ## Structure of the project
 - All of the code that I wrote is in the src folder
 - The hooks folder contains the use type selector
@@ -35,3 +35,5 @@ If you want to see the tests, run the following command
 - Displaying a big list of companies on the homepage
 - Limiting the list by 10 using `react-paginate`
 - Testing the CompanyListCard with `react-testing-library`
+
+I would still work on separating the styles in its own folders and improving it if I still had more time. Apart from that, I'd like to extend this a bit by showing more details on a different page(company details page for example) when clicking on its list.
