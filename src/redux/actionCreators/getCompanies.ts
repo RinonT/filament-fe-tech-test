@@ -10,7 +10,6 @@ export const getCompanies = () => {
 
     try {
       const { data } = await axios.get(`http://localhost:4000/companies`);
-      console.log(data);
       dispatch({
         type: ActionType.GET_COMPANIES_SUCCESS,
         payload: data,
