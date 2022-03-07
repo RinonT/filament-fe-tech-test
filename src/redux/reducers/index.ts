@@ -1,18 +1,44 @@
-import { combineReducers } from "redux";
-import { FETCH_COMPANIES } from "../actions";
+import { Action, ActionType } from "../actionTypes/index";
+import { Company } from "../types";
 
-export const companyList = (
-  state = "",
-  action: { type: string; payload: any }
-) => {
+interface State {
+  companies: Company[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState = {
+  companies: [],
+  loading: false,
+  error: null,
+};
+
+const companiesReducer = (
+  state: State = initialState,
+  action: Action
+): State => {
   switch (action.type) {
-    case FETCH_COMPANIES:
-      return action.payload;
+    case ActionType.GET_COMPANIES_PENDING:
+      return {
+        loading: true,
+        companies: [],
+        error: null,
+      };
+    case ActionType.GET_COMPANIES_SUCCESS:
+      return {
+        loading: false,
+        companies: action.payload,
+        error: null,
+      };
+    case ActionType.GET_COMPANIES_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+        companies: [],
+      };
     default:
       return state;
   }
 };
 
-export default combineReducers({
-  companyList,
-});
+export default companiesReducer;

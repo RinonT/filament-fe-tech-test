@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Company } from "../redux/types";
 
 const Card = styled.section`
   background-color: #fff;
@@ -32,16 +33,17 @@ const CardSection = styled.section`
   }
 `;
 
-interface CompanyListProps {
-  id: string;
-  name: string;
-  website: string;
-  sector: string;
-  address: string;
-  postcode: string;
-  property_size: number;
-  lease_price: string;
-}
+type CompanyListProps = Pick<
+  Company,
+  | "id"
+  | "name"
+  | "website"
+  | "sector"
+  | "address"
+  | "postcode"
+  | "property_size"
+  | "lease_price"
+>;
 
 export const CompanyListCard = (props: CompanyListProps) => {
   return (
